@@ -1,0 +1,5 @@
+cron:
+- description: Every 30 minutes
+  url: /activate_fartbot
+  schedule: every 30 minutes
+  timezone: America/Chicago
