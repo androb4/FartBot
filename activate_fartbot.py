@@ -14,6 +14,7 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token_key, access_token_secret)
 api = tweepy.API(auth)
 
+keyword = "fart"
 phrase = "FARTBOT APPROVES."
 
 class MainHandler(webapp2.RequestHandler):
@@ -21,7 +22,7 @@ class MainHandler(webapp2.RequestHandler):
         results = api.search(q="fart", lang="en")
 
         for Status in results:
-            if "RT" not in Status.text:
+            if "RT" not in Status.text and keyword not in Status.user.screen_name.lower() and keyword not in Status.user.name.lower():
                 api.update_status(phrase + " " + "https://twitter.com/" + Status.user.screen_name + "/status/" + Status.id_str)
                 break
 
